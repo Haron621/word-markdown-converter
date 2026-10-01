@@ -1,13 +1,40 @@
-# Word to Markdown (DOCX → Markdown converter)
+# Word ↔ Markdown — локальный конвертер и основа MD-системы
 
-[![npm version](https://img.shields.io/npm/v/word-to-markdown.svg)](https://www.npmjs.com/package/word-to-markdown)
-[![npm downloads](https://img.shields.io/npm/dm/word-to-markdown.svg)](https://www.npmjs.com/package/word-to-markdown)
-[![CI](https://github.com/benbalter/word-to-markdown-js/actions/workflows/ci.yml/badge.svg)](https://github.com/benbalter/word-to-markdown-js/actions/workflows/ci.yml)
-[![License: Apache-2.0](https://img.shields.io/npm/l/word-to-markdown.svg)](https://github.com/benbalter/word-to-markdown-js/blob/main/LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
-Convert Word documents to beautiful Markdown. Via command line, as a Node library, or in your browser. An even better version of the original [`word-to-markdown`](https://github.com/benbalter/word-to-markdown).
+Локальное веб-приложение для двустороннего преобразования документов
+`.docx ↔ .md`. Обработка выполняется в браузере: содержимое документов не
+передаётся на внешний сервер. Интерфейс доступен на русском, английском и
+турецком языках.
 
-Try it in your browser at [word2md.com](https://word2md.com), or use it from the command line — no clone required:
+Проект использует открытый исходный код по лицензии Apache 2.0. Функциональность
+Markdown → Word, локальный запуск и описанная ниже концепция развития добавлены
+Haron621.
+
+## Авторская концепция Haron621
+
+Проект развивается не только как конвертер, но и как технологическая основа
+MD-системы контроля качества выполняемых учебных заданий.
+
+1. **Интеграция в MD-систему контроля качества заданий.** Документы Word
+   преобразуются в структурированный Markdown для автоматической проверки,
+   сопоставления с требованиями, фиксации замечаний и последующего формирования
+   итогового `.docx`.
+2. **Сквозной контроль программы обучения.** Система должна связывать учебный
+   план, задания, результаты проверки, исправления и итоговый статус прохождения,
+   обеспечивая прослеживаемость качества на всех этапах обучения.
+
+Эти два направления являются авторскими идеями развития проекта Haron621.
+
+## Локальный запуск
+
+На Windows запустите `start-local.bat`, затем откройте:
+
+- русский интерфейс: `http://127.0.0.1:3000/ru/`;
+- English: `http://127.0.0.1:3000/`;
+- Türkçe: `http://127.0.0.1:3000/tr/`.
+
+Командная строка для преобразования Word в Markdown:
 
 ```console
 npx word-to-markdown input.docx > output.md
