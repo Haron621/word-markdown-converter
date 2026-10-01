@@ -14,6 +14,7 @@ import ConversionTable from './home/ConversionTable.astro';
 import CliCallout from './home/CliCallout.astro';
 import Faq from './home/Faq.astro';
 import LanguageSuggestion from './home/LanguageSuggestion.astro';
+import MarkdownToWord from './home/MarkdownToWord.astro';
 
 const locale = asLocale(Astro.currentLocale);
 const meta = localeMeta[locale];
@@ -67,6 +68,7 @@ const structuredData = {
 >
   <Hero />
   <Converter />
+  {(locale === 'ru' || locale === 'en' || locale === 'tr') && <MarkdownToWord />}
   <Promo />
   <HowItWorks />
   <ConversionTable />
@@ -77,4 +79,5 @@ const structuredData = {
 
 <script>
   import '../../src/index.ts';
+  import '../../src/markdown-to-docx.ts';
 </script>

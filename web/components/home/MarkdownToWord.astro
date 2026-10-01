@@ -1,0 +1,54 @@
+---
+const locale = Astro.currentLocale ?? 'en';
+const copies = {
+  en: {
+    eyebrow: 'Reverse conversion', title: 'Markdown → Word',
+    intro: 'Choose a .md file or paste Markdown. The document is created entirely in your browser.',
+    choose: 'Choose .md file', editor: 'Markdown',
+    placeholder: '# Heading\n\nText with **bold** and *italic*.\n\n- First item\n- Second item',
+    support: 'Supports headings, formatting, lists, links, tables, quotes, and code.',
+    download: 'Download .docx', loaded: 'Loaded',
+    empty: 'Paste Markdown or choose a .md file.', creating: 'Creating Word document…',
+    ready: 'Ready:', error: 'Could not create the Word document.',
+  },
+  ru: {
+    eyebrow: 'Обратное преобразование', title: 'Markdown → Word',
+    intro: 'Выберите файл .md или вставьте Markdown. Документ создаётся только в вашем браузере.',
+    choose: 'Выбрать файл .md', editor: 'Markdown',
+    placeholder: '# Заголовок\n\nТекст с **жирным** и *курсивом*.\n\n- Первый пункт\n- Второй пункт',
+    support: 'Поддерживаются заголовки, форматирование, списки, ссылки, таблицы, цитаты и код.',
+    download: 'Скачать .docx', loaded: 'Загружен',
+    empty: 'Вставьте Markdown или выберите файл .md.', creating: 'Создаю документ Word…',
+    ready: 'Готово:', error: 'Не удалось создать документ Word.',
+  },
+  tr: {
+    eyebrow: 'Tersine dönüştürme', title: 'Markdown → Word',
+    intro: 'Bir .md dosyası seçin veya Markdown metnini yapıştırın. Belge tamamen tarayıcınızda oluşturulur.',
+    choose: '.md dosyası seç', editor: 'Markdown',
+    placeholder: '# Başlık\n\n**Kalın** ve *italik* metin.\n\n- Birinci öğe\n- İkinci öğe',
+    support: 'Başlıklar, biçimlendirme, listeler, bağlantılar, tablolar, alıntılar ve kod desteklenir.',
+    download: '.docx indir', loaded: 'Yüklendi',
+    empty: 'Markdown metni yapıştırın veya bir .md dosyası seçin.', creating: 'Word belgesi oluşturuluyor…',
+    ready: 'Hazır:', error: 'Word belgesi oluşturulamadı.',
+  },
+} as const;
+const copy = copies[locale as keyof typeof copies] ?? copies.en;
+---
+
+<section class="reveal mx-auto mt-14 max-w-2xl rounded-2xl border border-rule-light bg-paper-card/70 p-6 shadow-[0_1px_2px_rgba(20,33,60,0.04)] dark:border-rule-dark dark:bg-ink-card/60 sm:p-8" aria-labelledby="md-to-docx-title">
+  <div class="mb-5 text-center">
+    <p class="font-mono text-xs tracking-widest text-chartreuse-deep uppercase dark:text-chartreuse">{copy.eyebrow}</p>
+    <h2 id="md-to-docx-title" class="mt-2 font-display text-2xl font-medium text-navy dark:text-[#f1f2f7]">{copy.title}</h2>
+    <p class="mt-2 text-sm text-navy-soft dark:text-mist">{copy.intro}</p>
+  </div>
+  <label for="md-file" class="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-rule-light px-5 py-5 text-sm font-medium text-navy transition-colors hover:border-chartreuse hover:bg-chartreuse/10 dark:border-rule-dark dark:text-[#eef0f6]">
+    {copy.choose}
+    <input id="md-file" class="sr-only" type="file" accept=".md,.markdown,text/markdown,text/plain" />
+  </label>
+  <label for="md-editor" class="mt-5 block font-mono text-xs font-medium tracking-wide text-navy-soft uppercase dark:text-mist">{copy.editor}</label>
+  <textarea id="md-editor" rows="12" spellcheck="false" placeholder={copy.placeholder} class="mt-2 w-full resize-y rounded-xl border border-rule-light bg-white px-4 py-3 font-mono text-sm leading-relaxed text-navy outline-none transition-colors focus:border-chartreuse dark:border-rule-dark dark:bg-ink dark:text-[#e3e6ef]"></textarea>
+  <div class="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <p id="md-to-docx-status" role="status" data-loaded={copy.loaded} data-empty={copy.empty} data-creating={copy.creating} data-ready={copy.ready} data-error={copy.error} class="text-sm text-navy-soft dark:text-mist">{copy.support}</p>
+    <button id="md-to-docx-button" type="button" class="inline-flex shrink-0 items-center justify-center rounded-lg bg-chartreuse px-5 py-2.5 text-sm font-semibold text-navy shadow-sm transition-colors hover:bg-chartreuse-deep hover:text-white disabled:cursor-wait disabled:opacity-60">{copy.download}</button>
+  </div>
+</section>
